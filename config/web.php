@@ -7,6 +7,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'view' => [
+             'theme' => [
+                 'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                 ],
+             ],
+        ],
+        // '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'R9NQJ6OtGo-XS9pimpqYpcx4WFzbYgKj',
@@ -39,12 +47,12 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         //para url amigables
-        'urlManager' => [
+       /* 'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
-        ],
+        ],*/
         
     ],
     'params' => $params,
