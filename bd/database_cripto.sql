@@ -24,13 +24,13 @@ CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
   `categoria` varchar(50) NOT NULL,
   PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `categoria` */
 
 LOCK TABLES `categoria` WRITE;
 
-insert  into `categoria`(`idcategoria`,`categoria`) values (1,'Emails'),(2,'Redes sociales');
+insert  into `categoria`(`idcategoria`,`categoria`) values (1,'Emails'),(2,'Redes sociales'),(3,'Trabajo'),(4,'Bancos'),(11,'otras');
 
 UNLOCK TABLES;
 
@@ -70,37 +70,13 @@ CREATE TABLE `notas` (
   PRIMARY KEY (`idnota`),
   KEY `FK_notas` (`idusuario`),
   CONSTRAINT `FK_notas` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `notas` */
 
 LOCK TABLES `notas` WRITE;
 
-UNLOCK TABLES;
-
-/*Table structure for table `site` */
-
-DROP TABLE IF EXISTS `site`;
-
-CREATE TABLE `site` (
-  `idsite` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(200) DEFAULT NULL,
-  `nom_site` varchar(50) DEFAULT NULL,
-  `nom_user` varchar(50) DEFAULT NULL,
-  `pass_user` varchar(255) DEFAULT NULL,
-  `notas` varchar(255) DEFAULT NULL,
-  `idcategoria` int(11) DEFAULT NULL,
-  `idusuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idsite`),
-  KEY `FK_site` (`idcategoria`),
-  KEY `FK_site_user` (`idusuario`),
-  CONSTRAINT `FK_site` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
-  CONSTRAINT `FK_site_user` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `site` */
-
-LOCK TABLES `site` WRITE;
+insert  into `notas`(`idnota`,`titulo`,`nota`,`idusuario`) values (1,'test nota','falta encriptar esta nota de prueba',1);
 
 UNLOCK TABLES;
 
@@ -117,11 +93,41 @@ CREATE TABLE `usuario` (
   `activo` int(1) DEFAULT '0' COMMENT 'Identifica si esta activo o inactivo',
   `intentos` int(1) DEFAULT '0' COMMENT 'Contador de intentos, para bloquear el usuario, max 3.',
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuario` */
 
 LOCK TABLES `usuario` WRITE;
+
+insert  into `usuario`(`idusuario`,`nombre`,`apellido`,`email`,`pass`,`activo`,`intentos`) values (1,'edwin','campos','ecampos@gmail.com','abcabc',1,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `wsite` */
+
+DROP TABLE IF EXISTS `wsite`;
+
+CREATE TABLE `wsite` (
+  `idsite` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(200) DEFAULT NULL,
+  `nom_site` varchar(50) DEFAULT NULL,
+  `nom_user` varchar(50) DEFAULT NULL,
+  `pass_user` varchar(255) DEFAULT NULL,
+  `notas` varchar(255) DEFAULT NULL,
+  `idcategoria` int(11) DEFAULT NULL,
+  `idusuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idsite`),
+  KEY `FK_site` (`idcategoria`),
+  KEY `FK_site_user` (`idusuario`),
+  CONSTRAINT `FK_site` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
+  CONSTRAINT `FK_site_user` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `wsite` */
+
+LOCK TABLES `wsite` WRITE;
+
+insert  into `wsite`(`idsite`,`url`,`nom_site`,`nom_user`,`pass_user`,`notas`,`idcategoria`,`idusuario`) values (1,'www.facebbok.com','facebook','correo de hotmail','asdf09a80sdf8a09sdf','test2',1,1),(2,'asdfasdfas','asdfasdfak','asdkfalsk','asdfaksdkfjkja','asdfaskj',1,1);
 
 UNLOCK TABLES;
 
