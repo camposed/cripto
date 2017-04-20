@@ -9,11 +9,15 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use conquer\select2\Select2Action;
+
+
 /**
  * WsiteController implements the CRUD actions for Wsite model.
  */
 class WsiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -64,12 +68,12 @@ class WsiteController extends Controller
     public function actionCreate()
     {
         $model = new Wsite();
-        //$model->idusuario = 1;
+        $model->idusuario = 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idsite]);
         } else {
-            return $model->getErrors();
+            //return $model->getErrors();
             return $this->render('create', [
                 'model' => $model,
             ]);
