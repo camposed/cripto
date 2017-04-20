@@ -64,10 +64,12 @@ class WsiteController extends Controller
     public function actionCreate()
     {
         $model = new Wsite();
+        //$model->idusuario = 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idsite]);
         } else {
+            return $model->getErrors();
             return $this->render('create', [
                 'model' => $model,
             ]);

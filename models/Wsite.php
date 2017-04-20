@@ -56,7 +56,7 @@ class Wsite extends \yii\db\ActiveRecord
             'nom_user' => 'Usuario',
             'pass_user' => 'Contraseña',
             'notas' => 'Notas',
-            'idcategoria' => 'Idcategoria',
+            'idcategoria' => 'Categoria',
             'idusuario' => 'Idusuario',
         ];
     }

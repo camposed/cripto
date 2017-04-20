@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Wsite;
+
+use yii\bootstrap\Modal; 
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\WsiteSearch */
@@ -16,7 +19,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Nuevo registro', ['create'], ['class' => 'btn btn-success']) ?>
+         <?= Html::a('Nuevo registro', ['create'], ['class' => 'btn btn-success']) ?> 
+            <?php
+                Modal::begin([
+                    'header' => '<h2>Crear un nuevo registro</h2>',
+                    'toggleButton' => ['label' => 'Nuevo registro','class'=>'btn btn-success'],
+                ]);
+                echo $this->render('create', ['model' => new Wsite()]) ;
+                Modal::end();
+            ?>
+
+
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
