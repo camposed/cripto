@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "site".
+ * This is the model class for table "wsite".
  *
  * @property integer $idsite
  * @property string $url
@@ -19,14 +19,14 @@ use Yii;
  * @property Categoria $idcategoria0
  * @property Usuario $idusuario0
  */
-class Site extends \yii\db\ActiveRecord
+class Wsite extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'site';
+        return 'wsite';
     }
 
     /**
