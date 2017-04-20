@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nota')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'idusuario')->textInput() ?>
+   <!-- <?= $form->field($model, 'idusuario')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

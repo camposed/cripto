@@ -7,32 +7,33 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\UsuarioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usuarios';
+$this->title = 'Mi cuenta';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <!--  <h1><?= Html::encode($this->title) ?></h1> -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <!-- <?= Html::a('Create Usuario', ['create'], ['class' => 'btn btn-success']) ?> -->
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+       // 'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+         //   ['class' => 'yii\grid\SerialColumn'],
 
-            'idusuario',
+         //   'idusuario',
             'nombre',
             'apellido',
             'email:email',
-            'pass',
+          //  'pass',
             // 'activo',
             // 'intentos',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+             ['class' => 'yii\grid\ActionColumn','template' => '{view}{update}'],
         ],
     ]); ?>
 </div>

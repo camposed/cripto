@@ -6,13 +6,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Notas */
 
-$this->title = $model->idnota;
+//$this->title = $model->idnota;
 $this->params['breadcrumbs'][] = ['label' => 'Notas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notas-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  <!--   <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->idnota], ['class' => 'btn btn-primary']) ?>
@@ -28,10 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idnota',
+          //  'idnota',
             'titulo',
             'nota:ntext',
-            'idusuario',
+           // 'idusuario',
         ],
     ]) ?>
 

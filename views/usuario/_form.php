@@ -20,9 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pass')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'activo')->textInput() ?>
+   <!--  <?= $form->field($model, 'activo')->textInput() ?> -->
 
-    <?= $form->field($model, 'intentos')->textInput() ?>
+   <!-- <?= $form->field($model, 'intentos')->textInput() ?> -->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

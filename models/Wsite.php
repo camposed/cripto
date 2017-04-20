@@ -52,9 +52,9 @@ class Wsite extends \yii\db\ActiveRecord
         return [
             'idsite' => 'Idsite',
             'url' => 'Url',
-            'nom_site' => 'Nom Site',
-            'nom_user' => 'Nom User',
-            'pass_user' => 'Pass User',
+            'nom_site' => 'Nombre del sitio',
+            'nom_user' => 'Usuario',
+            'pass_user' => 'Contraseña',
             'notas' => 'Notas',
             'idcategoria' => 'Idcategoria',
             'idusuario' => 'Idusuario',

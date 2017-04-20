@@ -7,33 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\LogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Logs';
+$this->title = 'Historial de acceso';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="log-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Log', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'idlog',
-            'idusuario',
             'fecha',
             'os',
             'nombre_host',
-            // 'tipo_maquina',
-            // 'version',
-            // 'ip',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn','template' => '{view}'],
         ],
     ]); ?>
 </div>
