@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use yii\bootstrap\Modal;
+use app\models\Usuario;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
 
@@ -15,15 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
    <h1>Mi perfil</h1>  
 
     <p>
-        <?= Html::a('Volver', ['index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->idusuario], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar', ['delete', 'id' => $model->idusuario], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+    <?php
+            Modal::begin([
+                'header' => '<h2>Editar</h2>',
+                'toggleButton' => [
+                    'label' => 'Editar',
+                    'class'=>'btn btn-success'],
+            ]);
+            echo $this->render('update', ['model' => $model,  'id' => $model->idusuario]) ;
+            Modal::end();  
+    ?>  
+
     </p>
 
     <?= DetailView::widget([
