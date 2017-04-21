@@ -71,10 +71,11 @@ class WsiteController extends Controller
         $model->idusuario = 1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idsite]);
+            //return $this->redirect(['view', 'id' => $model->idsite]);
+            return $this->actionIndex();
         } else {
             //return $model->getErrors();
-            return $this->render('create', [
+           return $this->render('create', [
                 'model' => $model,
             ]);
         }

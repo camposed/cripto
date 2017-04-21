@@ -66,7 +66,8 @@ class NotasController extends Controller
         $model = new Notas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idnota]);
+            //return $this->redirect(['view', 'id' => $model->idnota]);
+            return $this->actionIndex();
         } else {
             return $this->render('create', [
                 'model' => $model,

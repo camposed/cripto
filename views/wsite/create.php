@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Wsite;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */

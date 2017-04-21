@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\bootstrap\Modal;
+use app\models\Notas;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\NotasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -11,24 +14,23 @@ use yii\grid\GridView;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notas-index">
-
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Nueva Nota', ['create'], ['class' => 'btn btn-success']) ?>
+    <?php
+            Modal::begin([
+                'header' => '<h2>Nueva nota</h2>',
+                'toggleButton' => [
+                    'label' => 'Nueva nota',
+                    'class'=>'btn btn-success'],
+            ]);
+            echo $this->render('create', ['model' => new Notas()]) ;
+            Modal::end();  
+    ?>        
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-          //  ['class' => 'yii\grid\SerialColumn'],
-
-          //  'idnota',
-            'titulo',
-          //  'nota:ntext',
-          //  'idusuario',
-
+             'titulo',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

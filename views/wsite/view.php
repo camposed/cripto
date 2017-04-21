@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use app\models\Categoria;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */
@@ -30,13 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idsite',
+           // 'idsite',
             'url:url',
             'nom_site',
             'nom_user',
             'pass_user',
             'notas',
-            'idcategoria',
+            [
+                'attribute'=>'idcategoria',
+                'value'=> function($model){
+                    $idcategoria = Categoria::findOne($model->idcategoria);
+                    return $idcategoria->categoria;
+                },
+            ],            
            // 'idusuario',
         ],
     ]) ?>

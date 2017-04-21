@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use yii\bootstrap\Modal;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Notas */
 
@@ -12,11 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notas-view">
 
-  <!--   <h1><?= Html::encode($this->title) ?></h1> -->
-
     <p>
         <?= Html::a('Volver', ['index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->idnota], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Actualizar', ['update', 'id' => $model->idnota], ['class' => 'btn btn-primary']) ?> 
+
         <?= Html::a('Eliminar', ['delete', 'id' => $model->idnota], [
             'class' => 'btn btn-danger',
             'data' => [
