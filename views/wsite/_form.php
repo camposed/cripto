@@ -41,7 +41,7 @@ use app\models\Categoria;
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a('Volver', ['index'], ['class' => 'btn btn-danger']) ?>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -7,7 +7,7 @@ use app\models\Wsite;
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */
 
-$this->title = 'Crear nuevo registro';
+//$this->title = 'Crear nuevo registro';
 $this->params['breadcrumbs'][] = ['label' => 'Wsites', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -5,8 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */
 
-$this->title = 'Update Wsite: ' . $model->idsite;
-$this->params['breadcrumbs'][] = ['label' => 'Wsites', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => 'Wsites', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idsite, 'url' => ['view', 'id' => $model->idsite]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
