@@ -12,21 +12,10 @@ use yii\helpers\Url;
 <div class="usuario-form">
 
     <?php 
-
-       if($model->isNewRecord){
-           $form = ActiveForm::begin([
-                "method" => "post",
-                "action" => Url::toRoute("usuario/update"),
-                "enableClientValidation" => true,
-            ]);
-       }else{
-            $form = ActiveForm::begin([
-                "method" => "post",
-                "action" => Url::toRoute("usuario/create"),
-                "enableClientValidation" => true,
-            ]); 
-       };
-
+       $form = ActiveForm::begin([
+            "method" => "post",
+            "enableClientValidation" => true,
+        ]);
     ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

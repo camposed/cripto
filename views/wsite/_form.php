@@ -17,7 +17,6 @@ use app\models\Categoria;
 
     <?php $form = ActiveForm::begin([
         "method" => "post",
-        "action" => Url::toRoute("wsite/create"),
         "enableClientValidation" => true,
         ]);
     ?>

@@ -13,7 +13,6 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin([
         "method" => "post",
-        "action" => Url::toRoute("categoria/create"),
         "enableClientValidation" => true,
         ]);
     ?>
