@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-n
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
