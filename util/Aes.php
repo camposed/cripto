@@ -3,6 +3,7 @@
 namespace app\util;
 
 use yii\base\Execption;
+use yii\db\Query;
 
 class Aes{
 
@@ -43,5 +44,21 @@ class Aes{
             ), "\0"
         );
     }
+
+   function countNotas(){
+        $query = new Query;
+        $query->select('*')
+              ->from('notas');
+        $rows = $query->all();
+        return count($rows);
+    } 
+
+   function countWsite(){
+        $query = new Query;
+        $query->select('*')
+              ->from('wsite');
+        $rows = $query->all();
+        return count($rows);
+    } 
 
 }
