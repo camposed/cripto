@@ -20,7 +20,7 @@ $this->title = '';
 
         <p class="lead">Una frase te será mas facil de recordar, que una contraseña. Ej. 788hfdfs^&GIUI@xc#$</p>
 
-    </div>
+
 
    <div class="row">
         <!-- /.col -->
@@ -54,5 +54,5 @@ $this->title = '';
         <!-- /.col -->
 
 </div>
-</div>
 
+    </div>
