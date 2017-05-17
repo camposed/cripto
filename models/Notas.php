@@ -30,7 +30,7 @@ class Notas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titulo'], 'required'],
+            [['titulo','nota'], 'required'],
             [['nota'], 'string'],
             [['idusuario'], 'integer'],
             [['titulo'], 'string', 'max' => 50],

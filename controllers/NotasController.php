@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\util\Aes;
+use yii\db\Query;
 /**
  * NotasController implements the CRUD actions for Notas model.
  */
@@ -62,9 +64,7 @@ class NotasController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
-
-        var_dump($_POST['notas']['idnota']);  
+    {        
 
         $model = new Notas();
         $model->idusuario=1;
@@ -73,11 +73,56 @@ class NotasController extends Controller
             return $this->redirect(['view', 'id' => $model->idnota]);
             //return $this->actionIndex();
         } else {
-           return $model->getErrors();
-           // return $this->render('create', [
-           //     'model' => $model,
-           // ]);
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
+    }
+
+    public function actionEncriptar(){
+         
+         $hash = hash('md5','cosita bonita');
+         $model = new Notas();
+      
+         $model->titulo=$_POST['Notas']['titulo'];
+         $nota = trim($_POST['Notas']['nota']);
+         $model->nota = Aes::fnEncrypt($nota, $hash);
+
+         $model->idusuario=1;
+
+         $model->save();
+
+        if ($model->save()) {
+            return $this->redirect(['view', 'id' => $model->idnota]);
+            //return $this->actionIndex();
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }         
+    }
+
+    public function actionDesencriptar($id){
+
+        $hash = hash('md5','cosita bonita');
+        $model = new Notas();
+
+        $registro = Notas::find()
+            ->select('idnota,titulo,nota')
+            ->where(['idnota' =>$id])
+            ->one();
+
+        foreach ($registro as $clave => $valor) {
+               //echo "Clave: $clave; Valor: $valor<br />\n";
+              $model->$clave = $valor;
+              if($clave=='nota'){
+                   $model->$clave = Aes::fnDecrypt($valor, $hash ); 
+              }
+        }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
     }
 
     /**

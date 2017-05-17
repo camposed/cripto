@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Nueva nota',
                     'class'=>'btn btn-success'],
             ]);
-            echo $this->render('create', ['model' => new Notas()]) ;
+            echo $this->render('_encriptar', ['model' => new Notas()]) ;
             Modal::end();  
     ?>        
     </p>
