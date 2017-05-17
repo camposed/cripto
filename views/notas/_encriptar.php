@@ -22,6 +22,10 @@ $hash = hash('md5','cosita bonita');
 
     <?= $form->field($model,'nota')->textarea(['rows' => 6]) ?>
 
+    <input type="text" id="hash" class="form-control" name="hash" title="Se necesita su llave secreta" placeholder="Llave secreta" required>
+
+    <br>
+    
 <?= Html::submitButton("Guardar", ["class" => "btn btn-success"]) ?>
                 
 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

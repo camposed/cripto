@@ -81,12 +81,13 @@ class NotasController extends Controller
 
     public function actionEncriptar(){
          
-         $hash = hash('md5','cosita bonita');
+         $hash = hash('md5',trim($_POST['hash']));
+
          $model = new Notas();
       
          $model->titulo=$_POST['Notas']['titulo'];
          $nota = trim($_POST['Notas']['nota']);
-         $model->nota = Aes::fnEncrypt($nota, $hash);
+         $model->nota = Aes::fnEncrypt($nota,trim($hash));
 
          $model->idusuario=1;
 
@@ -102,14 +103,15 @@ class NotasController extends Controller
         }         
     }
 
-    public function actionDesencriptar($id){
+    public function actionDesencriptar(){
 
-        $hash = hash('md5','cosita bonita');
+      $hash = hash('md5',trim($_POST['hash']));
+
         $model = new Notas();
 
         $registro = Notas::find()
-            ->select('idnota,titulo,nota')
-            ->where(['idnota' =>$id])
+            ->select('*')
+            ->where(['idnota' =>$_POST['id']])
             ->one();
 
         foreach ($registro as $clave => $valor) {
@@ -120,9 +122,10 @@ class NotasController extends Controller
               }
         }
 
-            return $this->render('update', [
+            return $this->render('view', [
                 'model' => $model,
             ]);
+            
     }
 
     /**
