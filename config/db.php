@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=cripto',
+    'dsn' => 'mysql:host=138.197.238.52;dbname=cripto',
     'username' => 'ecamp',
-    'password' => 'abc123',
+    'password' => 'ecamp$',
     'charset' => 'utf8',
 ];

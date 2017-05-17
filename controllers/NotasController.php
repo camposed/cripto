@@ -63,15 +63,20 @@ class NotasController extends Controller
      */
     public function actionCreate()
     {
+
+        var_dump($_POST['notas']['idnota']);  
+
         $model = new Notas();
+        $model->idusuario=1;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idnota]);
-            return $this->actionIndex();
+            return $this->redirect(['view', 'id' => $model->idnota]);
+            //return $this->actionIndex();
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+           return $model->getErrors();
+           // return $this->render('create', [
+           //     'model' => $model,
+           // ]);
         }
     }
 

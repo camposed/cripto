@@ -1,5 +1,7 @@
 <?php
 
+use app\util\Aes;
+
 /* @var $this yii\web\View */
 
 $this->title = '';
@@ -51,6 +53,16 @@ $this->title = '';
 
     </div>
 
+<?php
+        $hash = hash('md5','mi clave secreta');
+        $passText = "mi contrasena";
+
+        $encriptado = Aes::fnEncrypt($passText, $hash);
+        echo "Encriptado: ".$encriptado."</br>";
+
+        $Desencriptado = Aes::fnDecrypt($encriptado, $hash);
+        echo "Desencriptado: ".$Desencriptado."</br>";   
+?>
 
    <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
