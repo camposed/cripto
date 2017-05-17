@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 use app\models\Categoria;
+use app\models\Wsite;
+
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */
@@ -14,11 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wsite-view">
 
-   <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-
-    <p>
         <?= Html::a('Volver', ['index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->idsite], ['class' => 'btn btn-primary']) ?>
+
+    <?php Modal::begin([
+            'header' => '<h2>Llave secreta</h2>',
+            'toggleButton' => [
+                'label' => 'Ver contrasenas',
+                'class'=>'btn btn-success'],
+        ]);
+        echo $this->render('_mihash', ['model' => new Wsite(),'id' => $model->idsite]) ;
+        Modal::end() ?>  
+
         <?= Html::a('Eliminar', ['delete', 'id' => $model->idsite], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -26,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,

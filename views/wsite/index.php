@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'notas',
             // 'idcategoria',
             // 'idusuario',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn','template' => '{view}{delete}'],
         ],
     ]); ?>
 </div>

@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 
 use conquer\select2\Select2Action;
 
+use app\util\Aes;
 
 /**
  * WsiteController implements the CRUD actions for Wsite model.
@@ -60,6 +61,40 @@ class WsiteController extends Controller
         ]);
     }
 
+    public function actionDesencriptar(){
+            
+            $hash = hash('md5',trim($_POST['hash']));
+
+            $model = new Wsite();
+
+            $registro = Wsite::find()
+                ->select('*')
+                ->where(['idsite' =>$_POST['id']])
+                ->one();
+
+            foreach ($registro as $clave => $valor) {
+                   //echo "Clave: $clave; Valor: $valor<br />\n";
+                  $model->$clave = $valor;
+
+                switch ($clave) {
+                    case 'nom_user':
+                        $model->$clave = Aes::fnDecrypt($valor, $hash ); 
+                        break;
+                    case 'pass_user':
+                       $model->$clave = Aes::fnDecrypt($valor, $hash ); 
+                        break;
+                    case 'notas':
+                        $model->$clave = Aes::fnDecrypt($valor, $hash ); 
+                        break;
+                }
+
+            }
+
+            return $this->render('view', [
+                    'model' => $model,
+                ]);
+
+    }
     /**
      * Creates a new Wsite model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -67,18 +102,32 @@ class WsiteController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Wsite();
-        $model->idusuario = 1;
+ 
+        $hash = hash('md5',trim($_POST['hash']));
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idsite]);
-            return $this->actionIndex();
+        $model = new Wsite();
+        $model->url = $_POST['Wsite']['url'];
+        $model->nom_site = $_POST['Wsite']['nom_site'];
+        $model->nom_user = Aes::fnEncrypt($_POST['Wsite']['nom_user'],trim($hash));
+        $model->pass_user= Aes::fnEncrypt($_POST['Wsite']['pass_user'],trim($hash));
+        $model->notas = Aes::fnEncrypt($_POST['Wsite']['notas'],trim($hash));
+        $model->idcategoria = $_POST['Wsite']['idcategoria'];
+        $model->idusuario = 1;
+        $model->save();
+
+
+
+        if ($model->save()) {
+            return $this->redirect(['view', 'id' => $model->idsite]);
+            //return $this->actionIndex();
         } else {
             //return $model->getErrors();
            return $this->render('create', [
                 'model' => $model,
             ]);
         }
+
+        
     }
 
     /**

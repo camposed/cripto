@@ -105,7 +105,7 @@ class NotasController extends Controller
 
     public function actionDesencriptar(){
 
-      $hash = hash('md5',trim($_POST['hash']));
+        $hash = hash('md5',trim($_POST['hash']));
 
         $model = new Notas();
 

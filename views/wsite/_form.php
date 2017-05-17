@@ -17,6 +17,7 @@ use app\models\Categoria;
 
     <?php $form = ActiveForm::begin([
         "method" => "post",
+        "action" => Url::toRoute("wsite/create"),
         "enableClientValidation" => true,
         ]);
     ?>
@@ -38,6 +39,8 @@ use app\models\Categoria;
         ]
     ); ?>
 
+<input type="text" id="hash" class="form-control" name="hash" title="Se necesita su llave secreta" placeholder="Llave secreta" required>
+<br>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
