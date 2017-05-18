@@ -39,6 +39,7 @@ class CategoriaController extends Controller
     {
         $searchModel = new CategoriaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['idusuario'=>Yii::$app->user->identity->id]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,6 +67,7 @@ class CategoriaController extends Controller
     public function actionCreate()
     {
         $model = new Categoria();
+        $model->idusuario = Yii::$app->user->identity->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['view', 'id' => $model->idcategoria]);

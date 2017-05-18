@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
              'titulo',
             ['class' => 'yii\grid\ActionColumn','template' => '{view}{delete}'],

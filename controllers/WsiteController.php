@@ -42,6 +42,7 @@ class WsiteController extends Controller
     {
         $searchModel = new WsiteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['idusuario'=>Yii::$app->user->identity->id]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -112,7 +113,7 @@ class WsiteController extends Controller
         $model->pass_user= Aes::fnEncrypt($_POST['Wsite']['pass_user'],trim($hash));
         $model->notas = Aes::fnEncrypt($_POST['Wsite']['notas'],trim($hash));
         $model->idcategoria = $_POST['Wsite']['idcategoria'];
-        $model->idusuario = 1;
+        $model->idusuario = Yii::$app->user->identity->id;
         $model->save();
 
 

@@ -37,7 +37,7 @@ class UsuarioController extends Controller
     {
         $searchModel = new UsuarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->actionView(1);
+        return $this->actionView(Yii::$app->user->identity->id);
        /* return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -64,6 +64,7 @@ class UsuarioController extends Controller
     public function actionCreate()
     {
         $model = new Usuario();
+        $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idusuario]);
@@ -83,11 +84,33 @@ class UsuarioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'update';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idusuario]);
         } else {
             return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionPassword($id)
+    {
+        $model = $this->findModel($id);
+        $model->scenario = 'password';
+
+        if ($model->load(Yii::$app->request->post())){
+            $model->pass = hash("sha256", $model->pass);
+            if ($model->save(false)){
+                Yii::$app->session->setFlash('exito_update_pass', 'Contraseña actualizada con éxito');
+            }else{
+                Yii::$app->session->setFlash('error_update_pass', 'No se pudo actualizar la contraseña');
+            }        
+            return $this->redirect(['view', 'id' => $model->idusuario]);
+        }else{
+            $model->pass = "";
+            return $this->render('update_pass', [
                 'model' => $model,
             ]);
         }

@@ -11,6 +11,9 @@ use yii\filters\VerbFilter;
 
 use app\util\Aes;
 use yii\db\Query;
+
+use yii\data\ArrayDataProvider;
+
 /**
  * NotasController implements the CRUD actions for Notas model.
  */
@@ -39,11 +42,13 @@ class NotasController extends Controller
     {
         $searchModel = new NotasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['idusuario'=>Yii::$app->user->identity->id]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+
     }
 
     /**
@@ -67,7 +72,7 @@ class NotasController extends Controller
     {        
 
         $model = new Notas();
-        $model->idusuario=1;
+        $model->idusuario=Yii::$app->user->identity->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idnota]);
@@ -89,7 +94,7 @@ class NotasController extends Controller
          $nota = trim($_POST['Notas']['nota']);
          $model->nota = Aes::fnEncrypt($nota,trim($hash));
 
-         $model->idusuario=1;
+         $model->idusuario=Yii::$app->user->identity->id;
 
          $model->save();
 

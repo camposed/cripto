@@ -17,8 +17,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\Usuario',
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -39,16 +39,28 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
-        //para url amigables
-       /* 'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],*/
-        
+    'db' => require(__DIR__ . '/db.php'),
+       'urlManager' => [
+           'enablePrettyUrl' => true,
+           'showScriptName' => false,
+           'rules' => [
+  
+           ],
+       ],
     ],
+    'as beforeRequest' => [  //if guest user access site so, redirect to login page.
+    'class' => 'yii\filters\AccessControl',
+    'rules' => [
+        [
+            'actions' => ['login', 'error', 'registro'],
+            'allow' => true,
+        ],
+        [
+            'allow' => true,
+            'roles' => ['@'],
+        ],
+    ],
+],
     'params' => $params,
 ];
 

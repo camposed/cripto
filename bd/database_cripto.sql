@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.50 
-MySQL - 5.7.15-log : Database - cripto
+MySQL - 5.7.18-0ubuntu0.16.04.1 : Database - cripto
 *********************************************************************
 */
 
@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
   `categoria` varchar(50) NOT NULL,
-  PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `idusuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idcategoria`),
+  KEY `FK_categoria` (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*Data for the table `categoria` */
 
 LOCK TABLES `categoria` WRITE;
-
-insert  into `categoria`(`idcategoria`,`categoria`) values (1,'Emails'),(2,'Redes sociales'),(3,'Trabajo'),(4,'Bancos'),(11,'otras');
 
 UNLOCK TABLES;
 
@@ -70,13 +70,29 @@ CREATE TABLE `notas` (
   PRIMARY KEY (`idnota`),
   KEY `FK_notas` (`idusuario`),
   CONSTRAINT `FK_notas` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 /*Data for the table `notas` */
 
 LOCK TABLES `notas` WRITE;
 
-insert  into `notas`(`idnota`,`titulo`,`nota`,`idusuario`) values (1,'test nota','falta encriptar esta nota de prueba',1);
+UNLOCK TABLES;
+
+/*Table structure for table `preguntas` */
+
+DROP TABLE IF EXISTS `preguntas`;
+
+CREATE TABLE `preguntas` (
+  `idpreg` int(11) NOT NULL AUTO_INCREMENT,
+  `varchar` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idpreg`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+/*Data for the table `preguntas` */
+
+LOCK TABLES `preguntas` WRITE;
+
+insert  into `preguntas`(`idpreg`,`varchar`) values (1,'Primera mascota'),(2,'Canción preferida'),(3,'Nombre de un familiar'),(4,'Marca preferida de ropa'),(5,'Nombre de un profesor'),(6,'Nombre de un novio/a'),(7,'Equipo deportivo preferido');
 
 UNLOCK TABLES;
 
@@ -89,17 +105,16 @@ CREATE TABLE `usuario` (
   `nombre` varchar(20) DEFAULT NULL COMMENT 'Nombre del usuario',
   `apellido` varchar(20) DEFAULT NULL COMMENT 'Apellido del usuario',
   `email` varchar(30) DEFAULT NULL COMMENT 'Email del usuario',
-  `pass` varchar(50) DEFAULT NULL COMMENT 'Clave de acceso al sistema',
+  `pass` varchar(250) DEFAULT NULL COMMENT 'Clave de acceso al sistema',
   `activo` int(1) DEFAULT '0' COMMENT 'Identifica si esta activo o inactivo',
   `intentos` int(1) DEFAULT '0' COMMENT 'Contador de intentos, para bloquear el usuario, max 3.',
+  `clave_cifrado` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuario` */
 
 LOCK TABLES `usuario` WRITE;
-
-insert  into `usuario`(`idusuario`,`nombre`,`apellido`,`email`,`pass`,`activo`,`intentos`) values (1,'edwin','campos','ecampos@gmail.com','abcabc',1,NULL);
 
 UNLOCK TABLES;
 
@@ -121,13 +136,11 @@ CREATE TABLE `wsite` (
   KEY `FK_site_user` (`idusuario`),
   CONSTRAINT `FK_site` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`),
   CONSTRAINT `FK_site_user` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wsite` */
 
 LOCK TABLES `wsite` WRITE;
-
-insert  into `wsite`(`idsite`,`url`,`nom_site`,`nom_user`,`pass_user`,`notas`,`idcategoria`,`idusuario`) values (1,'www.facebbok.com','facebook','correo de hotmail','asdf09a80sdf8a09sdf','test2',1,1),(2,'asdfasdfas','asdfasdfak','asdkfalsk','asdfaksdkfjkja','asdfaskj',1,1);
 
 UNLOCK TABLES;
 

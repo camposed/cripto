@@ -33,10 +33,9 @@ use app\util\Aes;
     <?= $form->field($model, 'nom_user')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pass_user')->widget(PasswordInput::classname(), [
-    'pluginOptions' => [
-        'showMeter' => true,
-        'toggleMask' => true,
-            'value'=>Aes::generaPass(),
+        'pluginOptions' => [
+            'showMeter' => true,
+            'toggleMask' => true
     ]]); ?>
 
     <?= $form->field($model, 'notas')->textarea(['rows' => 3]) ?>

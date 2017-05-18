@@ -6,6 +6,8 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use app\models\Wsite;
+use app\models\Categoria;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\WsiteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,9 +16,6 @@ $this->title = 'Mis contraseñas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wsite-index">
-
-   <!--  <h1><?= Html::encode($this->title) ?></h1> -->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
        <!--  <?= Html::a('Nuevo registro', ['create'], ['class' => 'btn btn-success']) ?>  -->
@@ -34,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
          //   ['class' => 'yii\grid\SerialColumn'],
 
@@ -44,7 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'nom_user',
             //'pass_user',
             // 'notas',
-            // 'idcategoria',
+            [
+                'attribute'=>'idcategoria',
+                'value'=> function($model){
+                    $idcategoria = Categoria::findOne($model->idcategoria);
+                    return $idcategoria->categoria;
+                },
+            ],  
             // 'idusuario',
             ['class' => 'yii\grid\ActionColumn','template' => '{view}{delete}'],
         ],

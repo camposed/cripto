@@ -1,9 +1,7 @@
 <?php
 use yii\helpers\Html;
 use app\util\Aes;
-
 /* @var $this yii\web\View */
-
 $this->title = '';
 ?>
 <div class="site-index">
@@ -18,9 +16,7 @@ $this->title = '';
     <div class="body-content">
         <p class="lead">Utiliza una sola frase para encriptar tus contraseñas y tus apuntes. Por seguridad esta frase no la guardanos en nuestra base de datos.</p>
 
-        <p class="lead">Una frase te será mas facil de recordar, que una contraseña. Ej. 788hfdfs^&GIUI@xc#$</p>
-
-<?= Aes::generaPass()?>
+        <p class="lead">Una frase te será mas facil de recordar, que una contraseña. Ej. <?= Aes::generaPass()?></p>
 
    <div class="row">
         <!-- /.col -->
@@ -55,4 +51,4 @@ $this->title = '';
 
 </div>
 
-    </div>
+</div>

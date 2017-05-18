@@ -21,25 +21,26 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Admininistrador</span>
+                        <span class="hidden-xs">
+                    <?php 
+                        if(Yii::$app->user->isGuest){
+                            echo "Invitado";
+                        }else{                          
+                            echo Yii::$app->user->identity->nombre." ".Yii::$app->user->identity->apellido." ";
+                      }
+                      ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
                                  alt="User Image"/>
-
-                            <p>
-                                Mi cuenta
-                                <small>Member since Nov. 2012</small>
-                            </p>
                         </li>
- 
+
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Mi perfil</a>
+                              <?= Html::a('Mi perfil', ['/usuario/index'], ['class'=>'btn btn-default btn-flat']) ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
@@ -52,10 +53,6 @@ use yii\helpers\Html;
                     </ul>
                 </li>
 
-                <!-- User Account: style can be found in dropdown.less -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
             </ul>
         </div>
     </nav>

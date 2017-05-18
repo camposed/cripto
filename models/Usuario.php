@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\web\IdentityInterface;
+use kartik\password\StrengthValidator;
 
 /**
  * This is the model class for table "usuario".
@@ -14,16 +16,19 @@ use Yii;
  * @property string $pass
  * @property integer $activo
  * @property integer $intentos
+ * @property integer $clave_cifrado
  *
  * @property Log[] $logs
  * @property Notas[] $notas
  * @property Site[] $sites
  */
-class Usuario extends \yii\db\ActiveRecord
+class Usuario extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc
      */
+    public $authKey;
+
     public static function tableName()
     {
         return 'usuario';
@@ -36,11 +41,16 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return [
             [['activo', 'intentos'], 'integer'],
-            [['nombre', 'apellido'], 'string', 'max' => 20],
-            [['email'], 'string', 'max' => 30],
-            [['pass'], 'string', 'max' => 50],
+            [['nombre','apellido'], 'required', 'on' => 'update'],
+            [['pass'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'email', 'on' => 'password'],
+            [['nombre', 'apellido'], 'string', 'max' => 25, 'on' => 'update'],
+            [['pass'], 'string', 'max' => 20, 'on' => 'password'],
+            [['pass'], 'required', 'on' => 'password'],
+            [['email'], 'email', 'on' => 'create'],
+            [['email'], 'string', 'max' => 40, 'on' => 'create'],
+            [['clave_cifrado'], 'string', 'max' => 40, 'on' => 'create'],
         ];
-    }
+    }    
 
     /**
      * @inheritdoc
@@ -52,9 +62,10 @@ class Usuario extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'email' => 'Email',
-            'pass' => 'Pass',
+            'pass' => 'Password',
             'activo' => 'Activo',
             'intentos' => 'Intentos',
+            'clave_cifrado' => 'Clave de Cifrado',
         ];
     }
 
@@ -80,5 +91,50 @@ class Usuario extends \yii\db\ActiveRecord
     public function getSites()
     {
         return $this->hasMany(Site::className(), ['idusuario' => 'idusuario']);
+    }
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['email' => $username]);
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+          return static::findOne(['access_token' => $token]);
+    }
+
+    public static function findByPasswordResetToken($token)
+    {
+       $expire = \Yii::$app->params['user.passwordResetTokenExpire'];
+       $parts = explode('_', $token);
+       $timestamp = (int) end($parts);
+       if ($timestamp + $expire < time()) {
+           // token expired
+           return null;
+       }
+
+       return static::findOne([
+           'password_reset_token' => $token
+       ]);
+    }
+
+    public function getId()
+    {
+       return $this->getPrimaryKey();
+    }
+
+    public function getAuthKey()
+    {
+       return $this->authKey;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+       return $this->getAuthKey() === $authKey;
     }
 }
