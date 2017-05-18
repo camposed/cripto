@@ -8,9 +8,13 @@ use conquer\select2\Select2Widget;
 use yii\helpers\ArrayHelper;
 use app\models\Categoria;
 
+use kartik\password\PasswordInput;
+use app\util\Aes;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Wsite */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="wsite-form">
@@ -28,7 +32,12 @@ use app\models\Categoria;
 
     <?= $form->field($model, 'nom_user')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pass_user')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pass_user')->widget(PasswordInput::classname(), [
+    'pluginOptions' => [
+        'showMeter' => true,
+        'toggleMask' => true,
+            'value'=>Aes::generaPass(),
+    ]]); ?>
 
     <?= $form->field($model, 'notas')->textarea(['rows' => 3]) ?>
 

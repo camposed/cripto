@@ -20,7 +20,7 @@ $this->title = '';
 
         <p class="lead">Una frase te será mas facil de recordar, que una contraseña. Ej. 788hfdfs^&GIUI@xc#$</p>
 
-
+<?= Aes::generaPass()?>
 
    <div class="row">
         <!-- /.col -->
