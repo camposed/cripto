@@ -61,6 +61,9 @@ $fieldOptions2 = [
             <div style="text-align:center;">
                 <?= Html::a("Registrarse", Url::to(['/site/registro'])) ?>
             </div>
+            <div style="text-align:center;">
+                <?= Html::a("Recuperar mi contraseña.", Url::to(['/site/contact'])) ?>
+            </div>            
         </div>
 
         <?php ActiveForm::end(); ?>

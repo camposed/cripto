@@ -1,3 +1,8 @@
+<?php
+
+    if(!Yii::$app->user->isGuest){
+?>        
+
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -20,3 +25,8 @@
     </section>
 
 </aside>
+
+<?php
+
+  }
+?>

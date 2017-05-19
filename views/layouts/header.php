@@ -23,9 +23,7 @@ use yii\helpers\Html;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="hidden-xs">
                     <?php 
-                        if(Yii::$app->user->isGuest){
-                            echo "Invitado";
-                        }else{                          
+                        if(!Yii::$app->user->isGuest){                       
                             echo Yii::$app->user->identity->nombre." ".Yii::$app->user->identity->apellido." ";
                       }
                       ?></span>

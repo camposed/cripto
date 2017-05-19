@@ -108,7 +108,6 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [
@@ -117,6 +116,24 @@ class SiteController extends Controller
     }
 
     public function actionRegistro()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RegistroForm();
+        if ($model->load(Yii::$app->request->post()) && $model->registrar()) {
+            $modelo = new LoginForm();
+            return $this->render('login', [
+                'model' => $modelo,
+            ]);
+        }
+        return $this->render('registro', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionRecovery()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();

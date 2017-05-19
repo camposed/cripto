@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "237ff1393fea1c788cc4f742f06cec29",
-    "content-hash": "f889be80127a6b28d14a99dd86bcc9d9",
+    "hash": "aa45bb590e4cc6b5b46840e28308b93f",
+    "content-hash": "7cc39fe281252cd84f6651a481ebbcb8",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -629,6 +629,47 @@
                 "icon"
             ],
             "time": "2016-10-24 15:52:54"
+        },
+        {
+            "name": "hreitsma/yii2-simplemath-captcha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hreitsma/yii2-simplemath-captcha.git",
+                "reference": "cdc84e27dec3f6fd84dc3ef04aa6de005cd79a2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hreitsma/yii2-simplemath-captcha/zipball/cdc84e27dec3f6fd84dc3ef04aa6de005cd79a2f",
+                "reference": "cdc84e27dec3f6fd84dc3ef04aa6de005cd79a2f",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "hr\\captcha\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Henk Reitsma",
+                    "email": "henkreitsma1990@gmail.com"
+                }
+            ],
+            "description": "Simple Math Captcha",
+            "keywords": [
+                "captcha",
+                "math",
+                "yii2"
+            ],
+            "time": "2017-03-28 18:31:01"
         },
         {
             "name": "kartik-v/strength-meter",
@@ -3597,7 +3638,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-password": 20
+        "kartik-v/yii2-password": 20,
+        "hreitsma/yii2-simplemath-captcha": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -45,18 +45,20 @@ class Aes{
         );
     }
 
-   function countNotas(){
+   function countNotas($id){
         $query = new Query;
         $query->select('*')
-              ->from('notas');
+              ->from('notas')
+              ->where(['idusuario' => $id]);
         $rows = $query->all();
         return count($rows);
     } 
 
-   function countWsite(){
+   function countWsite($id){
         $query = new Query;
         $query->select('*')
-              ->from('wsite');
+              ->from('wsite')
+              ->where(['idusuario'=>$id]);
         $rows = $query->all();
         return count($rows);
     } 

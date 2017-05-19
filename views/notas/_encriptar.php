@@ -28,6 +28,4 @@ $hash = hash('md5','cosita bonita');
     
 <?= Html::submitButton("Guardar", ["class" => "btn btn-success"]) ?>
                 
-<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-
 <?php $form->end() ?>

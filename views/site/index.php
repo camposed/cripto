@@ -26,7 +26,7 @@ $this->title = '';
 
             <div class="info-box-content">
               <span class="info-box-number">Mis contraseñas</span>
-              <span class="info-box-number">Tu tiendes <?=Aes::countWsite() ?> registros</span>
+              <span class="info-box-number">Tu tiendes <?=Aes::countWsite(Yii::$app->user->identity->id) ?> registros</span>
               <?= Html::a('Consultar', ['wsite/index'], ['class' => 'btn btn-primary']) ?>
             </div>
             <!-- /.info-box-content -->
@@ -40,7 +40,7 @@ $this->title = '';
 
             <div class="info-box-content">
               <span class="info-box-number">Mis notas</span>
-              <span class="info-box-number">Tu tienes <?=Aes::countNotas() ?> registros</span>
+              <span class="info-box-number">Tu tienes <?=Aes::countNotas(Yii::$app->user->identity->id) ?> registros</span>
               <?= Html::a('Consultar', ['notas/index'], ['class' => 'btn btn-primary']) ?>
             </div>
             <!-- /.info-box-content -->

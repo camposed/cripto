@@ -29,6 +29,14 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+            'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => 'smtp.gmail.com',
+            'username' => 'ede@gmail.com',
+            'password' => 'ede',
+            'port' => '587',
+            'encryption' => 'tls',
+        ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,7 +60,7 @@ $config = [
     'class' => 'yii\filters\AccessControl',
     'rules' => [
         [
-            'actions' => ['login', 'error', 'registro'],
+            'actions' => ['login', 'error', 'registro','contact'],
             'allow' => true,
         ],
         [
